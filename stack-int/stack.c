@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "stack.h"
 
 /**
@@ -19,7 +20,7 @@ Stack new_stack(void)
 * @param st La pile à tester
 * @return true si la Pile est vide, faux sinon
 */
-Bool is_empty_stack(Stack st)
+bool is_empty_stack(Stack st)
 {
 	if(st == NULL)
 		return true;
