@@ -37,9 +37,18 @@ int main(int argc, char **argv){
                     pile = push_stack(pile, top_stack(pile)+4);
                     put_space(fic2, top_stack(pile));
                 }else if(p == ';'){
-                    fputc(p, fic2);
-                    fputs("\n", fic2);
-                    put_space(fic2, top_stack(pile));
+                    char k = getc(fic1);
+                    if(k == '}'){
+                        fputc(p, fic2);
+                        fputs("\n", fic2);
+                        pile = pop_stack(pile);
+                        put_space(fic2, top_stack(pile));
+                        fputc(k, fic2);
+                    }else{
+                        fputc(p, fic2);
+                        fputs("\n", fic2);
+                        put_space(fic2, top_stack(pile));
+                    }
                 }else if(p == '}'){
                     fputs("\n", fic2);
                     pile = pop_stack(pile);
