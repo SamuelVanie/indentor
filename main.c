@@ -3,10 +3,12 @@
 # include <stdbool.h>
 # include "./fonctions/fonctions.h"
 # include "./stack-int/stack.h"
+# define NOMBRE_ESPACE 4
 
 int main(int argc, char **argv){
-    FILE *fic1 = fopen("fichier.txt","r");
-    FILE *fic2 = fopen("temp.txt","w");
+    FILE** files = includes_writer("fichier.txt");
+    FILE *fic2 = files[1];
+    FILE *fic1 = files[0];
     Stack pile = new_stack();
     pile = push_stack(pile, 0);
     bool isInParenthesis = false;
@@ -22,38 +24,45 @@ int main(int argc, char **argv){
             if(s == ' '){
                 fputs("\n", fic2);
                 put_space(fic2, top_stack(pile));
-                pile = push_stack(pile, top_stack(pile)+4);
             }else if(s == '{'){
                 fputc('{', fic2);
                 fputs("\n", fic2);
-                pile = push_stack(pile, top_stack(pile)+4);
+                pile = push_stack(pile, top_stack(pile)+NOMBRE_ESPACE);
                 put_space(fic2, top_stack(pile));
+            }else if(s == ';'){
+                fputc(s, fic2);
+                fputs("\n", fic2);
+                put_space(fic2, top_stack(pile));
+            }else{
+                fputc(p, fic2);
             }
         }else{
             if(!isInParenthesis){
                 if(p == '{'){
                     fputc(p, fic2);
                     fputs("\n", fic2);
-                    pile = push_stack(pile, top_stack(pile)+4);
+                    pile = push_stack(pile, top_stack(pile)+NOMBRE_ESPACE);
                     put_space(fic2, top_stack(pile));
                 }else if(p == ';'){
+                    fputc(p, fic2);
+                    fputs("\n", fic2);
                     char k = getc(fic1);
                     if(k == '}'){
-                        fputc(p, fic2);
-                        fputs("\n", fic2);
                         pile = pop_stack(pile);
                         put_space(fic2, top_stack(pile));
                         fputc(k, fic2);
-                    }else{
-                        fputc(p, fic2);
                         fputs("\n", fic2);
                         put_space(fic2, top_stack(pile));
+                    }else{
+                        put_space(fic2, top_stack(pile));
+                        fputc(k, fic2);
                     }
                 }else if(p == '}'){
                     fputs("\n", fic2);
                     pile = pop_stack(pile);
                     put_space(fic2, top_stack(pile));
                     fputc(p, fic2);
+                    fputs("\n", fic2);
                 }else{
                     fputc(p, fic2);
                 }
@@ -64,4 +73,5 @@ int main(int argc, char **argv){
     }
     fclose(fic2);
     fclose(fic1);
+    return 0;
 }
