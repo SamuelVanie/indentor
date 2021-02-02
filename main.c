@@ -6,7 +6,8 @@
 # define NOMBRE_ESPACE 4
 
 int main(int argc, char **argv){
-    FILE** files = includes_writer("fichier.txt");
+    
+    FILE** files = includes_writer(argv[1]);
     FILE *fic2 = files[1];
     FILE *fic1 = files[0];
     Stack pile = new_stack();

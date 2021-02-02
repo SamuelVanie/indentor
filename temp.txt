@@ -2,7 +2,7 @@
 # include <stdlib.h>
 # include <string.h>
 
-nt main(int argc, char *argv[]){
+int main(int argc, char *argv[]){
     Saisir();
     afficher("bonjourTesOuf\n");
     Inverse("ToujoursSaisi\n\n");
@@ -50,4 +50,4 @@ int Mot(char chaine[]){
     }
 return compteur;
 }
-ï¿½ï¿½
+ÿÿ

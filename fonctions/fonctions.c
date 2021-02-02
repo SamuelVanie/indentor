@@ -52,7 +52,9 @@ FILE** includes_writer(char nomFichier[]){
                 fputs("\n", temp);
             }else{
                 fputs("\n", temp);
+                fputc(p, temp);
             }
+            remove(nomFichier);
             files[0] = noSpace;
             files[1] = temp;
             return files;
