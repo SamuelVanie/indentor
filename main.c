@@ -6,8 +6,7 @@
 # define NOMBRE_ESPACE 4
 
 int main(int argc, char **argv){
-    
-    FILE** files = includes_writer(argv[1]);
+    FILE **files = includes_writer(argv[1]);
     FILE *fic2 = files[1];
     FILE *fic1 = files[0];
     Stack pile = new_stack();
@@ -72,7 +71,23 @@ int main(int argc, char **argv){
             }
         }
     }
-    fclose(fic2);
-    fclose(fic1);
+    fclose(fic2); fclose(fic1);
+    if(argc == 2){
+        rename("temp.txt", argv[1]);
+        remove("noSpace.txt");
+    }else{
+        FILE *result;
+        result = fopen(argv[2], "a");
+        char g;
+        fic2 = fopen("temp.txt", "r");
+        fputc('\n', result);
+        while(!feof(fic2)){
+            g = getc(fic2);
+            fputc(g, result);
+        }
+        fclose(result);fclose(fic2);
+        remove("temp.txt");
+        remove("noSpace.txt");
+    }
     return 0;
 }
