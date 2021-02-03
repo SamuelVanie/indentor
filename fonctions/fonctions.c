@@ -23,7 +23,11 @@ FILE** includes_writer(char nomFichier[]){
         }else if(f == ' '){
             char l = getc(fp);
             if(l == ' '){
-                continue;
+                char k = getc(fp);
+                if(k == ' ');
+                else{
+                    fputc(k, noSpace);
+                }
             }else{
                 fputc(f, noSpace);
                 fputc(l, noSpace);

@@ -13,14 +13,14 @@ int main(int argc, char **argv){
     pile = push_stack(pile, 0);
     bool isInParenthesis = false;
     while(!feof(fic1)){
-        int p = getc(fic1);
+        char p = getc(fic1);
         if(p == '('){
             isInParenthesis = true;
             fputc(p, fic2);
         }else if(p == ')'){
             isInParenthesis = false;
             fputc(p, fic2);
-            int s = getc(fic1);
+            char s = getc(fic1);
             if(s == ' '){
                 fputs("\n", fic2);
                 put_space(fic2, top_stack(pile));
