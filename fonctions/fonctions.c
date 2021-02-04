@@ -11,8 +11,8 @@ FILE** includes_writer(char nomFichier[]){
     int c;
     FILE **files = malloc(2*sizeof(FILE*));
     FILE *fp = fopen(nomFichier, "r");
-    FILE *noSpace = fopen("noSpace.txt", "w");
-    FILE *temp = fopen("temp.txt", "w");
+    FILE *noSpace = fopen("noSpace", "w");
+    FILE *temp = fopen("temp", "w");
     while(!feof(fp)){
         char f = getc(fp);
         if(f == '#'){
@@ -32,12 +32,20 @@ FILE** includes_writer(char nomFichier[]){
                 fputc(f, noSpace);
                 fputc(l, noSpace);
             }
+        }else if(f == ';'){
+            char l = getc(fp);
+            if(l == ' ' || l == '\n' || l == '\t'){
+                fputc(f, noSpace);
+            }else{
+                fputc(f, noSpace);
+                fputc(l, noSpace);
+            }
         }else{
             fputc(f, noSpace);
         }
     }
     fclose(noSpace);fclose(fp);
-    noSpace = fopen("noSpace.txt", "r");
+    noSpace = fopen("noSpace", "r");
     while(!feof(noSpace)){
         char p = getc(noSpace);
         if(c != 0){
