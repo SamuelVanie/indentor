@@ -106,8 +106,6 @@ int top_stack(Stack st)
 {
 	if(is_empty_stack(st))
 	{
-		printf("Aucun sommet, la Pile est vide.\n");
-		exit(EXIT_FAILURE);
 	}
 
 	return st->value;

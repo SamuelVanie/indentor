@@ -26,17 +26,23 @@ int main(int argc, char **argv){
                 fputs("\n", fic2);
                 if(stack_length(pile) != 1)
                     put_space(fic2, top_stack(pile));
+                else
+                    break;
             }else if(s == '{'){
                 fputc('{', fic2);
                 fputs("\n", fic2);
                 pile = push_stack(pile, top_stack(pile)+NOMBRE_ESPACE);
                 if(stack_length(pile) != 1)
                     put_space(fic2, top_stack(pile));
+                else
+                    break;
             }else if(s == ';'){
                 fputc(s, fic2);
                 fputs("\n", fic2);
                 if(stack_length(pile) != 1)
                     put_space(fic2, top_stack(pile));
+                else
+                    break;
             }else{
                 fputc(p, fic2);
             }
@@ -48,6 +54,8 @@ int main(int argc, char **argv){
                     pile = push_stack(pile, top_stack(pile)+NOMBRE_ESPACE);
                     if(stack_length(pile) != 1)
                         put_space(fic2, top_stack(pile));
+                    else
+                        break;
                 }else if(p == ';'){
                     fputc(p, fic2);
                     fputs("\n", fic2);
@@ -64,6 +72,9 @@ int main(int argc, char **argv){
                             fputs("\n", fic2);
                             put_space(fic2, top_stack(pile));
                         }
+                        else
+                            break;
+                        
                     }else if(k0 == 'c'){
                         sCase[1] = fgetc(fic1);
                         if(sCase[1] == 'a'){
@@ -77,10 +88,15 @@ int main(int argc, char **argv){
                             if(stack_length(pile) != 1){
                                 put_space(fic2, top_stack(pile));
                                 fputs("case", fic2);
+                            }else{
+                                fputs("case", fic2);
+                                break;
                             }
                         }else{
                             if(stack_length(pile) != 1)
                                 put_space(fic2, top_stack(pile));
+                            else
+                                break;
                             for(int i=0; i<=3; i++){
                                 if(sCase[i])
                                     putc(sCase[i], fic2);
@@ -108,10 +124,15 @@ int main(int argc, char **argv){
                             if(stack_length(pile) != 1){
                                 put_space(fic2, top_stack(pile));
                                 fputs("default", fic2);
+                            }else{
+                                fputs("default", fic2);
+                                break;
                             }
                         }else{
                             if(stack_length(pile) != 1)
                                 put_space(fic2, top_stack(pile));
+                            else
+                                break;
                             for(int i=0; i<=6; i++){
                                 if(defaultCase[i])
                                     putc(defaultCase[i], fic2);
@@ -121,6 +142,8 @@ int main(int argc, char **argv){
                         if(stack_length(pile) != 1){
                             put_space(fic2, top_stack(pile));
                             fputc(k0, fic2);
+                        }else{
+                            break;
                         }
                     }
                 }else if(p == '}'){
@@ -130,6 +153,9 @@ int main(int argc, char **argv){
                         put_space(fic2, top_stack(pile));
                         fputc(p, fic2);
                         fputs("\n", fic2);
+                    }else{
+                        fputc(p, fic2);
+                        break;
                     }
                 }else{
                     fputc(p, fic2);
